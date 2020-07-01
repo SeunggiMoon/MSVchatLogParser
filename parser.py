@@ -1,17 +1,20 @@
 import re
 
 fileLoc = "C:/Users/Moon/Documents/Logs/"
-fileName = "test.log"
+fileName = "2016-03-12-2.log"
 filePostfix = "_parse.txt"
 
 patternLst = [
     "\[\d\d:\d\d:\d\d\]",
     "<.*>.*",
-    "\[WEB\].*"
+    "\[WEB\].*",
+    "[ 가-힣A-Za-z0-9_]* logged in",
+    "[ 가-힣A-Za-z0-9_]* left the game",
 ]
 
 delPatternLst = [
-    "\[[0-9;]*m"
+    "\[/[0-9.]*:[0-9]*\]",
+    "\[[0-9;]*m",
 ]
 
 class LogParser:
