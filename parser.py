@@ -1,7 +1,7 @@
 import re
 
 fileLoc = "C:/Users/Moon/Documents/Logs/"
-fileName = "2016-02-11-7.log"
+fileName = "test.log"
 filePostfix = "_parse.txt"
 
 patternLst = [
@@ -10,10 +10,12 @@ patternLst = [
     "\[WEB\].*"
 ]
 
-delPattern = "\[.*m"
+delPatternLst = [
+    "\[[0-9;]*m"
+]
 
 class LogParser:
-    def extractPattern(self, sFileLoc, sFileName, sFilePostfix, sPatternLst):
+    def extractPattern(self, sFileLoc, sFileName, sFilePostfix, sPatternLst, sDelPatternLst):
         cntMsg = 0
         f = open(sFileLoc + sFileName, mode = "rt", encoding = "utf-8") 
         dest = open(sFileLoc + sFileName + sFilePostfix, mode = "w+", encoding = "utf-8")
@@ -21,6 +23,9 @@ class LogParser:
         ln = f.readlines()
 
         for string in ln:
+            for delPattern in sDelPatternLst:
+                string = re.sub(delPattern, '', string)
+            print(string)
             matchList = []
             for iPattern in sPatternLst:
                 pattern = re.compile(iPattern)
@@ -37,4 +42,4 @@ class LogParser:
         print("Parsed successfully (" + str(cntMsg) + " messages)")
 
 parser = LogParser()
-parser.extractPattern(fileLoc, fileName, filePostfix, patternLst)
+parser.extractPattern(fileLoc, fileName, filePostfix, patternLst, delPatternLst)
