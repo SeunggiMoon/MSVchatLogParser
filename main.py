@@ -1,13 +1,23 @@
 import os
 import logParser
 
+filePostfix = "_parse.txt"
+
+def getFileList():
+    path = "./"
+    allFileList = os.listdir(path)
+    fileList = [file for file in allFileList if file.endswith(".log")]
+
+    print ("log file list: {}".format(fileList))
+    return fileList
+
 def main():
-    fileLoc = "C:/Users/Moon/Documents/Logs/"
-    fileName = "2016-03-03-5(2).log"
-    filePostfix = "_parse.txt"
+    fileList = getFileList()
 
     parser = logParser.LogParser()
-    parser.extractPattern(fileLoc, fileName, filePostfix)
+    for logFile in fileList:
+        print("parsing " + logFile)
+        parser.extractPattern("", logFile, filePostfix)
 
 if __name__ == '__main__':
     main()
