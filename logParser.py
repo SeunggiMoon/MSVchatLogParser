@@ -6,11 +6,10 @@ class LogParser:
         "<.*>.*",
         "\[WEB\].*",
         "\[Server\].*",
-        "[ 가-힣A-Za-z0-9_.]* logged in with entity id \d*",
+        "[ 가-힣A-Za-z0-9_.]*\[/[0-9.]*:[0-9]*\] logged in with entity id \d*",
         "[ 가-힣A-Za-z0-9_.]* left the game",
     ]
     delPatternLst = [
-        "\[/[0-9.]*:[0-9]*\]",
         "\[[0-9;]*m",
     ]
 
